@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import Image from "next/image";
 import { FadeIn } from "@/components/fade-in";
 import { ImageLightbox } from "@/components/image-lightbox";
 import { trackEvent } from "@/components/analytics";
@@ -10,7 +9,7 @@ type ImageSectionProps = {
   title: string;
   images: string[];
   className?: string;
-  containerClassName?: string; // New property added
+  containerClassName?: string;
   description?: string;
   bottomDescription?: string;
   bordered?: boolean;
@@ -18,8 +17,16 @@ type ImageSectionProps = {
   altBase?: string;
 };
 
-export function ImageSection({ 
-  title, images, className, containerClassName, description, bottomDescription, bordered = false, transparent = false, altBase
+export function ImageSection({
+  title,
+  images,
+  className,
+  containerClassName,
+  description,
+  bottomDescription,
+  bordered = false,
+  transparent = false,
+  altBase
 }: ImageSectionProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -64,7 +71,6 @@ export function ImageSection({
   if (!images || images.length === 0) return null;
 
   return (
-    // Applied containerClassName here to override default spacing when needed
     <section className={`px-5 py-12 sm:px-8 lg:px-12 lg:py-20 overflow-hidden relative group ${className || ""} ${containerClassName || ""}`}>
       <div className="mb-8 border-t border-line pt-4 flex flex-wrap justify-between items-center gap-3">
         <h2 className="max-w-[calc(100%-6rem)] text-xs uppercase tracking-[0.24em] text-quiet sm:max-w-none sm:tracking-[0.32em]">{title}</h2>
@@ -86,57 +92,57 @@ export function ImageSection({
             <p className="text-lg leading-8 text-quiet">{description}</p>
           </FadeIn>
         )}
-        
+
         {isConceptSection ? (
           <div className="w-full min-w-0 overflow-hidden">
-            <div 
-              ref={scrollContainerRef} 
-              onScroll={updateScrollButtons} 
+            <div
+              ref={scrollContainerRef}
+              onScroll={updateScrollButtons}
               className="flex gap-6 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
             >
               {images.map((image, index) => (
-                <button 
-                  key={index} 
+                <button
+                  key={index}
                   type="button"
                   aria-label={`Open ${getAlt(index)}`}
-                  onClick={() => openImage(index)} 
+                  onClick={() => openImage(index)}
                   className={`relative block aspect-[16/9] min-w-full shrink-0 snap-center ${!transparent && bordered ? "border border-line" : ""}`}
                 >
-                  <Image 
-                    src={image} 
-                    alt={getAlt(index)} 
-                    fill 
-                    sizes="100vw"
-                    quality={100}
-                    unoptimized
-                    className={`object-contain object-top ${transparent ? "mix-blend-multiply" : ""}`} 
+                  <img
+                    src={image}
+                    alt={getAlt(index)}
+                    loading="lazy"
+                    decoding="async"
+                    draggable={false}
+                    className={`absolute inset-0 h-full w-full object-contain object-top ${transparent ? "mix-blend-multiply" : ""}`}
+                    style={{ imageRendering: "auto" }}
                   />
                 </button>
               ))}
             </div>
           </div>
         ) : (
-          <div 
-            ref={scrollContainerRef} 
-            onScroll={updateScrollButtons} 
+          <div
+            ref={scrollContainerRef}
+            onScroll={updateScrollButtons}
             className={`flex w-full gap-6 overflow-x-auto pb-4 scroll-smooth [&::-webkit-scrollbar]:hidden ${transparent ? "lg:ml-auto" : ""}`}
           >
             {images.map((image, index) => (
-              <button 
-                key={index} 
+              <button
+                key={index}
                 type="button"
                 aria-label={`Open ${getAlt(index)}`}
-                onClick={() => openImage(index)} 
+                onClick={() => openImage(index)}
                 className={`relative block aspect-[4/3] w-[82vw] shrink-0 sm:w-[70vw] lg:w-[45vw] ${!transparent && bordered ? "border border-line" : ""}`}
               >
-                <Image 
-                  src={image} 
-                  alt={getAlt(index)} 
-                  fill 
-                  sizes="(min-width: 1024px) 45vw, (min-width: 640px) 70vw, 82vw"
-                  quality={100}
-                  unoptimized
-                  className={`object-cover ${transparent ? "mix-blend-multiply" : ""}`} 
+                <img
+                  src={image}
+                  alt={getAlt(index)}
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                  className={`absolute inset-0 h-full w-full object-cover ${transparent ? "mix-blend-multiply" : ""}`}
+                  style={{ imageRendering: "auto" }}
                 />
               </button>
             ))}
