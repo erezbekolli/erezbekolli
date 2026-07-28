@@ -1,5 +1,19 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 import { FadeIn } from "@/components/fade-in";
+import { CvDownloadButton } from "@/components/cv-download-button";
+
+export const metadata: Metadata = {
+  title: "About | Architecture, Visualization & Research",
+  description:
+    "Learn about Erëz Bekolli, an architect specializing in architectural design, visualization, research, heritage, and digital workflows.",
+  openGraph: {
+    title: "About Erëz Bekolli | Architect",
+    description:
+      "Erëz Bekolli is an architect specializing in architectural design, visualization, research, and digital workflows.",
+    images: ["/images/about/PROFILE.JPG"]
+  }
+};
 
 export default function AboutPage() {
   return (
@@ -60,6 +74,10 @@ export default function AboutPage() {
 
               </div>
 
+              <div className="mt-8">
+                <CvDownloadButton />
+              </div>
+
             </div>
 
             {/* Right Side Column: Biography texts */}
@@ -78,6 +96,10 @@ export default function AboutPage() {
               
               <p>
                 Alongside architectural design, visualization plays an important role in my process, helping communicate ideas through atmosphere, materiality, and spatial storytelling. Whether working through drawings, models, or visualizations, I aim to create thoughtful and well-resolved architecture that responds to both people and place.
+              </p>
+
+              <p>
+                Beyond architectural design and visualization, I developed and designed my own portfolio website, combining architectural presentation with digital design and web development.
               </p>
             </div>
 

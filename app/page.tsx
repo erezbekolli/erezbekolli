@@ -10,9 +10,9 @@ export default function Home() {
         
         {/* Top banner line above the divider */}
         <FadeIn className="w-full mb-8">
-          <p className="text-xs uppercase tracking-[0.32em] text-neutral-800">
+          <h1 className="text-xs uppercase tracking-[0.32em] text-neutral-800">
             Erëz Bekolli / Architecture & Visualization
-          </p>
+          </h1>
         </FadeIn>
 
         {/* Horizontal border-line layout with full-width cinematic landscape feature image */}
@@ -24,6 +24,7 @@ export default function Home() {
                 alt="Featured Architectural Visualization"
                 fill
                 priority
+                quality={90}
                 className="object-cover"
                 sizes="100vw"
               />
@@ -51,6 +52,7 @@ export default function Home() {
                     src={project.coverImage || "cover.png"}
                     alt={project.title}
                     fill
+                    quality={88}
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />

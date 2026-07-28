@@ -35,7 +35,7 @@ export const projects: Project[] = [
     coverImage: "/images/vertical-living/cover.png",
     heroImage: "/images/vertical-living/hero.jpg",
     images: [
-      "/images/vertical-living/v1.png",
+      "/images/vertical-living/v1.jpg",
       "/images/vertical-living/cover.png",
       "/images/vertical-living/v3.png",
       "/images/vertical-living/v2.png",
@@ -50,8 +50,8 @@ export const projects: Project[] = [
       "/images/vertical-living/katet1.png"
     ],
     sections: [
-      "/images/vertical-living/prerjet.png",
-      "/images/vertical-living/FASADAT.png"
+      "/images/vertical-living/prerjet.jpg",
+      "/images/vertical-living/FASADAT.jpg"
     ],
     diagrams: [],
     technical: [
@@ -73,23 +73,23 @@ export const projects: Project[] = [
       "The building form begins with an X-shaped reference drawn from the kraca motif in traditional Albanian clothing. Through a sequence of softening, separation, and orientation, the mass becomes a curved hotel bar that opens rooms toward the strongest landscape views.",
     planDescription:
       "The ground floor separates public hospitality functions from back-of-house areas through a curved plan that follows the site geometry. Restaurant, lounge, bar, ski room, kitchen, and service spaces are organized around clear guest circulation, while the typical room floors use a linear corridor with compact room modules oriented outward toward views and terraces.",
-    coverImage: "/images/hotel-threshold/coveri.png",
+    coverImage: "/images/hotel-threshold/coveri.jpg",
     heroImage: "/images/hotel-threshold/hero.jpg",
     images: [
-      "/images/hotel-threshold/coveri.png",
-      "/images/hotel-threshold/cover.png",
-      "/images/hotel-threshold/v3.png",
-      "/images/hotel-threshold/v5.png"
+      "/images/hotel-threshold/coveri.jpg",
+      "/images/hotel-threshold/cover.jpg",
+      "/images/hotel-threshold/v3.jpg",
+      "/images/hotel-threshold/v5.jpg"
     ],
     drawings: ["/images/hotel-threshold/koncepti.jpg"],
     plans: [
       "/images/hotel-threshold/perdhesa.jpg",
-      "/images/hotel-threshold/kati.png",
+      "/images/hotel-threshold/kati.jpg",
       "/images/hotel-threshold/dhomat.jpg"
     ],
     sections: [
-      "/images/hotel-threshold/prerja.png",
-      "/images/hotel-threshold/FASDAT.png"
+      "/images/hotel-threshold/prerja.jpg",
+      "/images/hotel-threshold/FASDAT.jpg"
     ],
     diagrams: [],
     technical: [
@@ -111,21 +111,21 @@ export const projects: Project[] = [
       "The massing begins as a simple volume shaped by the plot, then separates around a central core to create a stronger spatial and visual identity. Green terraces are inserted into the office plates, turning the facade into a layered system of workspaces, outdoor extensions, and environmental buffering.",
     planDescription:
       "The plans use a central service and circulation core to free the surrounding floor plates for flexible public and office programs. The ground floor combines entrance, information, meeting, auditorium, and shared areas, while the work floors organize open offices, meeting rooms, management spaces, kitchens, and terraces around a clear structural grid.",
-    coverImage: "/images/urban-study/cover.png",
+    coverImage: "/images/urban-study/cover.jpg",
     heroImage: "/images/urban-study/hero.jpg",
     images: [
-      "/images/urban-study/cover.png",
-      "/images/urban-study/viz.png"
+      "/images/urban-study/cover.jpg",
+      "/images/urban-study/viz.jpg"
     ],
     drawings: ["/images/urban-study/koncepti.png"],
     plans: [
       "/images/urban-study/perdhesa.jpg",
-      "/images/urban-study/kati.png"
+      "/images/urban-study/kati.jpg"
     ],
     sections: [
-      "/images/urban-study/PRERJA A-A.png",
+      "/images/urban-study/PRERJA A-A.jpg",
       "/images/urban-study/PRERJA B.jpg",
-      "/images/urban-study/fasada.png",
+      "/images/urban-study/fasada.jpg",
       "/images/urban-study/fasada2.jpg"
     ],
     technical: [
@@ -151,11 +151,11 @@ export const projects: Project[] = [
     heroImage: "/images/heritage-reuse/hero.jpg",
     images: [
       "/images/heritage-reuse/cover.png",
-      "/images/heritage-reuse/v1.png",
-      "/images/heritage-reuse/v2.png",
-      "/images/heritage-reuse/v3.png",
-      "/images/heritage-reuse/v4.png",
-      "/images/heritage-reuse/v5.png"
+      "/images/heritage-reuse/v1.jpg",
+      "/images/heritage-reuse/v2.jpg",
+      "/images/heritage-reuse/v3.jpg",
+      "/images/heritage-reuse/v4.jpg",
+      "/images/heritage-reuse/v5.jpg"
     ],
     drawings: ["/images/heritage-reuse/koncepti.jpg"],
     plans: [
@@ -164,8 +164,8 @@ export const projects: Project[] = [
     ],
     sections: [
       "/images/heritage-reuse/PRERJET.jpg",
-      "/images/heritage-reuse/FVERIORE.png",
-      "/images/heritage-reuse/Flindore.png"
+      "/images/heritage-reuse/FVERIORE.jpg",
+      "/images/heritage-reuse/Flindore.jpg"
     ],
     technical: [
       "Typology: Cultural Hub and Community Craft Center",

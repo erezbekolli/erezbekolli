@@ -1,9 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { FadeIn } from "@/components/fade-in";
 import { ImageSection } from "@/components/image-section";
+import { ProjectHeroImage } from "@/components/project-hero-image";
+import { ProjectVisitTracker } from "@/components/project-visit-tracker";
 import { getProject, projects } from "@/data/projects";
 
 type ProjectPageProps = { params: Promise<{ slug: string }> };
@@ -17,9 +18,22 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   const project = getProject(slug);
   if (!project) return {};
   return {
-    title: `${project.title} | Erëz Bekolli`,
+    title: `${project.title} | Architecture Project`,
     description: project.description,
-    openGraph: { title: `${project.title} | Erëz Bekolli`, description: project.description, images: [project.heroImage] }
+    alternates: {
+      canonical: `/projects/${project.slug}`
+    },
+    openGraph: {
+      title: `${project.title} | Erëz Bekolli Architecture Portfolio`,
+      description: project.description,
+      type: "article",
+      images: [
+        {
+          url: project.heroImage,
+          alt: `${project.title} architectural project by Erëz Bekolli`
+        }
+      ]
+    }
   };
 }
 
@@ -28,8 +42,35 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const project = getProject(slug);
   if (!project) notFound();
 
+  const projectStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    url: `https://erez-bekolli.vercel.app/projects/${project.slug}`,
+    image: `https://erez-bekolli.vercel.app${project.heroImage}`,
+    description: project.description,
+    creator: {
+      "@type": "Person",
+      name: "Erëz Bekolli",
+      jobTitle: "Architect"
+    },
+    about: [
+      project.type,
+      "Architectural design",
+      "Architectural visualization",
+      "Architecture research"
+    ],
+    spatialCoverage: project.location,
+    dateCreated: project.year
+  };
+
   return (
     <main>
+      <ProjectVisitTracker slug={project.slug} title={project.title} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectStructuredData) }}
+      />
       <section className="min-h-screen px-5 pb-12 pt-24 sm:px-8 lg:px-12">
         <div className="grid min-h-[calc(100vh-7rem)] grid-cols-1 gap-8 border-t border-line pt-6 lg:grid-cols-12">
           <FadeIn className="lg:col-span-5">
@@ -37,7 +78,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <h1 className="font-serif text-5xl leading-tight sm:text-6xl lg:text-7xl">{project.title}</h1>
           </FadeIn>
           <FadeIn delay={0.12} className="relative min-h-[50vh] sm:min-h-[70vh] lg:min-h-[80vh] lg:col-span-6 lg:col-start-7">
-            <Image src={project.heroImage} alt={project.title} fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+            <ProjectHeroImage
+              src={project.heroImage}
+              alt={`${project.title} architectural visualization by Erëz Bekolli`}
+            />
           </FadeIn>
         </div>
       </section>
@@ -63,6 +107,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         images={project.drawings} 
         description={project.concept} 
         transparent={true} 
+        altBase={project.title}
       />
       
       <ImageSection 
@@ -70,10 +115,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         images={project.plans} 
         bottomDescription={project.planDescription}
         bordered 
+        altBase={project.title}
       />
-      <ImageSection title="Sections & Elevations" images={project.sections} bordered />
-      <ImageSection title="Elevations" images={project.diagrams ?? []} bordered />
-      <ImageSection title="Visualizations" images={project.images} />
+      <ImageSection title="Sections & Elevations" images={project.sections} bordered altBase={project.title} />
+      <ImageSection title="Elevations" images={project.diagrams ?? []} bordered altBase={project.title} />
+      <ImageSection title="Visualizations" images={project.images} altBase={project.title} />
 
       <section className="px-5 py-12 sm:px-8 lg:px-12 lg:py-20">
         <div className="grid gap-10 border-t border-line pt-6 lg:grid-cols-12">

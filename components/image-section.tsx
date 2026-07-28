@@ -3,6 +3,8 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { FadeIn } from "@/components/fade-in";
+import { ImageLightbox } from "@/components/image-lightbox";
+import { trackEvent } from "@/components/analytics";
 
 type ImageSectionProps = {
   title: string;
@@ -13,12 +15,13 @@ type ImageSectionProps = {
   bottomDescription?: string;
   bordered?: boolean;
   transparent?: boolean;
+  altBase?: string;
 };
 
 export function ImageSection({ 
-  title, images, className, containerClassName, description, bottomDescription, bordered = false, transparent = false 
+  title, images, className, containerClassName, description, bottomDescription, bordered = false, transparent = false, altBase
 }: ImageSectionProps) {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -45,6 +48,17 @@ export function ImageSection({
       const amount = isConceptSection ? container.clientWidth + 24 : container.clientWidth * 0.8;
       container.scrollBy({ left: direction === "left" ? -amount : amount, behavior: "smooth" });
     }
+  };
+
+  const getAlt = (index: number) =>
+    `${altBase ? `${altBase} - ` : ""}${title.toLowerCase()} image ${index + 1}`;
+
+  const openImage = (index: number) => {
+    setSelectedIndex(index);
+    trackEvent("image_open", {
+      image: images[index],
+      image_group: title
+    });
   };
 
   if (!images || images.length === 0) return null;
@@ -83,13 +97,16 @@ export function ImageSection({
               {images.map((image, index) => (
                 <button 
                   key={index} 
-                  onClick={() => setSelectedImage(image)} 
+                  type="button"
+                  aria-label={`Open ${getAlt(index)}`}
+                  onClick={() => openImage(index)} 
                   className={`relative block aspect-[16/9] min-w-full shrink-0 snap-center ${!transparent && bordered ? "border border-line" : ""}`}
                 >
                   <Image 
                     src={image} 
-                    alt={`${title} ${index + 1}`} 
+                    alt={getAlt(index)} 
                     fill 
+                    sizes="100vw"
                     className={`object-contain object-top ${transparent ? "mix-blend-multiply" : ""}`} 
                   />
                 </button>
@@ -105,13 +122,16 @@ export function ImageSection({
             {images.map((image, index) => (
               <button 
                 key={index} 
-                onClick={() => setSelectedImage(image)} 
+                type="button"
+                aria-label={`Open ${getAlt(index)}`}
+                onClick={() => openImage(index)} 
                 className={`relative block aspect-[4/3] w-[82vw] shrink-0 sm:w-[70vw] lg:w-[45vw] ${!transparent && bordered ? "border border-line" : ""}`}
               >
                 <Image 
                   src={image} 
-                  alt={`${title} ${index + 1}`} 
+                  alt={getAlt(index)} 
                   fill 
+                  sizes="(min-width: 1024px) 45vw, (min-width: 640px) 70vw, 82vw"
                   className={`object-cover ${transparent ? "mix-blend-multiply" : ""}`} 
                 />
               </button>
@@ -126,13 +146,13 @@ export function ImageSection({
         </FadeIn>
       )}
 
-      {selectedImage && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4" onClick={() => setSelectedImage(null)}>
-          <div className="relative w-full h-full max-w-5xl max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
-             <Image src={selectedImage} alt="Full view" fill className="object-contain" />
-          </div>
-        </div>
-      )}
+      <ImageLightbox
+        images={images}
+        currentIndex={selectedIndex}
+        alt={getAlt}
+        onClose={() => setSelectedIndex(null)}
+        onChange={setSelectedIndex}
+      />
     </section>
   );
 }
