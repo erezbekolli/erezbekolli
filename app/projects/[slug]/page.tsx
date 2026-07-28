@@ -1,9 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { FadeIn } from "@/components/fade-in";
 import { ImageSection } from "@/components/image-section";
-import { ProjectHeroImage } from "@/components/project-hero-image";
 import { ProjectVisitTracker } from "@/components/project-visit-tracker";
 import { getProject, projects } from "@/data/projects";
 
@@ -78,9 +78,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <h1 className="font-serif text-5xl leading-tight sm:text-6xl lg:text-7xl">{project.title}</h1>
           </FadeIn>
           <FadeIn delay={0.12} className="relative min-h-[50vh] sm:min-h-[70vh] lg:min-h-[80vh] lg:col-span-6 lg:col-start-7">
-            <ProjectHeroImage
+            <Image
               src={project.heroImage}
               alt={`${project.title} architectural visualization by Erëz Bekolli`}
+              fill
+              priority
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              quality={90}
+              className="object-cover"
             />
           </FadeIn>
         </div>
