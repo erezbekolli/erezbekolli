@@ -107,6 +107,8 @@ export function ImageSection({
                     alt={getAlt(index)} 
                     fill 
                     sizes="100vw"
+                    quality={100}
+                    unoptimized
                     className={`object-contain object-top ${transparent ? "mix-blend-multiply" : ""}`} 
                   />
                 </button>
@@ -132,6 +134,8 @@ export function ImageSection({
                   alt={getAlt(index)} 
                   fill 
                   sizes="(min-width: 1024px) 45vw, (min-width: 640px) 70vw, 82vw"
+                  quality={100}
+                  unoptimized
                   className={`object-cover ${transparent ? "mix-blend-multiply" : ""}`} 
                 />
               </button>

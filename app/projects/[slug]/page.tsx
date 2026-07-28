@@ -84,7 +84,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               fill
               priority
               sizes="(min-width: 1024px) 50vw, 100vw"
-              quality={90}
+              quality={100}
+              unoptimized
               className="object-cover"
             />
           </FadeIn>

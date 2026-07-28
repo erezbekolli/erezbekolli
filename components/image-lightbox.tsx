@@ -65,13 +65,13 @@ export function ImageLightbox({
 
   return (
     <div
-      className="fixed inset-0 z-[80] flex items-center justify-center bg-black/92 p-4 text-white"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black p-4 text-white"
       role="dialog"
       aria-modal="true"
       aria-label="Image viewer"
       onClick={onClose}
     >
-      <div className="absolute right-4 top-4 z-10 flex gap-2">
+      <div className="absolute right-4 top-4 z-[10000] flex gap-2">
         <button
           type="button"
           aria-label="Zoom out"
@@ -79,7 +79,7 @@ export function ImageLightbox({
             event.stopPropagation();
             setZoom(scale - 0.25);
           }}
-          className="flex h-11 w-11 items-center justify-center border border-white/30 text-xs transition hover:bg-white hover:text-black lg:h-8 lg:w-8"
+          className="flex h-12 w-12 items-center justify-center border border-white bg-black text-lg text-white transition hover:bg-white hover:text-black lg:h-10 lg:w-10"
         >
           -
         </button>
@@ -90,7 +90,7 @@ export function ImageLightbox({
             event.stopPropagation();
             setZoom(scale + 0.25);
           }}
-          className="flex h-11 w-11 items-center justify-center border border-white/30 text-xs transition hover:bg-white hover:text-black lg:h-8 lg:w-8"
+          className="flex h-12 w-12 items-center justify-center border border-white bg-black text-lg text-white transition hover:bg-white hover:text-black lg:h-10 lg:w-10"
         >
           +
         </button>
@@ -101,7 +101,7 @@ export function ImageLightbox({
             event.stopPropagation();
             onClose();
           }}
-          className="flex h-11 w-11 items-center justify-center border border-white/30 text-xs uppercase tracking-[0.18em] transition hover:bg-white hover:text-black lg:h-8 lg:w-8"
+          className="flex h-14 w-14 items-center justify-center border border-white bg-white text-xl font-medium uppercase tracking-[0.08em] text-black shadow-[0_0_0_1px_rgba(0,0,0,0.6)] transition hover:bg-black hover:text-white lg:h-12 lg:w-12"
         >
           X
         </button>
@@ -116,7 +116,7 @@ export function ImageLightbox({
               event.stopPropagation();
               go(-1);
             }}
-            className="absolute left-3 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center border border-white/30 transition hover:bg-white hover:text-black"
+            className="absolute left-3 top-1/2 z-[10000] flex h-12 w-12 -translate-y-1/2 items-center justify-center border border-white bg-black text-white transition hover:bg-white hover:text-black"
           >
             <span aria-hidden="true">{"<"}</span>
           </button>
@@ -127,7 +127,7 @@ export function ImageLightbox({
               event.stopPropagation();
               go(1);
             }}
-            className="absolute right-3 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center border border-white/30 transition hover:bg-white hover:text-black"
+            className="absolute right-3 top-1/2 z-[10000] flex h-12 w-12 -translate-y-1/2 items-center justify-center border border-white bg-black text-white transition hover:bg-white hover:text-black"
           >
             <span aria-hidden="true">{">"}</span>
           </button>
@@ -149,7 +149,8 @@ export function ImageLightbox({
             alt={alt(currentIndex)}
             fill
             sizes="100vw"
-            quality={95}
+            quality={100}
+            unoptimized
             className="object-contain transition-transform duration-300 ease-out"
             style={{ transform: `scale(${scale})` }}
             onDoubleClick={() => setZoom(scale === 1 ? 2 : 1)}

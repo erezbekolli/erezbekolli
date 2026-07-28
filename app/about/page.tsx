@@ -32,6 +32,8 @@ export default function AboutPage() {
                   alt="Erëz Bekolli"
                   fill
                   priority
+                  quality={100}
+                  unoptimized
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />

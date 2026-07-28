@@ -24,7 +24,8 @@ export default function Home() {
                 alt="Featured Architectural Visualization"
                 fill
                 priority
-                quality={90}
+                quality={100}
+                unoptimized
                 className="object-cover"
                 sizes="100vw"
               />
@@ -52,7 +53,8 @@ export default function Home() {
                     src={project.coverImage || "cover.png"}
                     alt={project.title}
                     fill
-                    quality={88}
+                    quality={100}
+                    unoptimized
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
