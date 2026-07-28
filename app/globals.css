@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: 18 18 16;
+  --paper: 248 247 244;
+  --quiet: 103 101 94;
+  --line: 214 211 203;
+  color-scheme: light;
+}
+
+.dark {
+  --ink: 236 234 229;
+  --paper: 17 17 16;
+  --quiet: 166 162 152;
+  --line: 64 62 57;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  background: rgb(var(--paper));
+  color: rgb(var(--ink));
+  font-feature-settings: "liga" 1, "kern" 1;
+  text-rendering: geometricPrecision;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgb(var(--ink));
+  color: rgb(var(--paper));
+}
+
+.editorial-grid {
+  background-image:
+    linear-gradient(to right, rgb(var(--line) / 0.28) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--line) / 0.22) 1px, transparent 1px);
+  background-size: calc(100% / 12) 5rem;
+}
+
+.image-reveal {
+  clip-path: inset(0 0 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
